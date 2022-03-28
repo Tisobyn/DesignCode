@@ -69,7 +69,6 @@
 		3EBB734E27F1C80C005ACF0B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3EBB734227F1C7F2005ACF0B /* ContentView.swift */,
 				3EBB734027F1C7F2005ACF0B /* DesignCodeApp.swift */,
 				3EBB734427F1C7F7005ACF0B /* Assets.xcassets */,
 				3EBB734627F1C7F7005ACF0B /* Preview Content */,
@@ -88,6 +87,7 @@
 		3EBB735027F1C835005ACF0B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3EBB734227F1C7F2005ACF0B /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
