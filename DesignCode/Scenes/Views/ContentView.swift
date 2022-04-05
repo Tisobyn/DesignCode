@@ -80,7 +80,7 @@ struct ContentView: View {
                             self.show = false
                         }
                 )
-//            Text("\(bottomState.height)").offset(y: -300)
+//            Text("\(bottomState.height)").offset(y: -300) 
             ButtomCardView()
                 .offset(x: 0, y: showCard ? 360 : 1000)
                 .offset(y: bottomState.height)
