@@ -39,7 +39,7 @@ struct Home: View {
                             x: 0, y: 10)
                 }
                 .sheet(isPresented: $showUpdate) {
-                    ContentView()
+                    UpdateList()
                 }
 
             }
