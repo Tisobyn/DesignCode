@@ -18,6 +18,7 @@
 		3EBB734327F1C7F2005ACF0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBB734227F1C7F2005ACF0B /* ContentView.swift */; };
 		3EBB734527F1C7F7005ACF0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EBB734427F1C7F7005ACF0B /* Assets.xcassets */; };
 		3EBB734827F1C7F7005ACF0B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EBB734727F1C7F7005ACF0B /* Preview Assets.xcassets */; };
+		3ECFEB9C280D49DF00974D32 /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFEB9B280D49DF00974D32 /* RingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		3EBB734227F1C7F2005ACF0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3EBB734427F1C7F7005ACF0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EBB734727F1C7F7005ACF0B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3ECFEB9B280D49DF00974D32 /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				3EB2E2572806E9B7009BD6C5 /* UpdateList.swift */,
 				3E395C4D2806F0E200F16347 /* UpdateDetail.swift */,
 				3E395C522806FF7900F16347 /* TabBar.swift */,
+				3ECFEB9B280D49DF00974D32 /* RingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ECFEB9C280D49DF00974D32 /* RingView.swift in Sources */,
 				3E395C532806FF7900F16347 /* TabBar.swift in Sources */,
 				3E395C4E2806F0E300F16347 /* UpdateDetail.swift in Sources */,
 				3EBB734327F1C7F2005ACF0B /* ContentView.swift in Sources */,
