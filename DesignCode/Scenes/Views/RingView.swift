@@ -16,6 +16,8 @@ struct RingView: View {
     var height: CGFloat = 300
     var percent: CGFloat = 88
 
+    @Binding var show: Bool
+
     var body: some View {
         let multiplier = width / 44
         let progress = 1 - percent / 100
@@ -29,7 +31,7 @@ struct RingView: View {
                 .frame(width: width, height: height)
 
             Circle()
-                .trim(from: progress, to: 1)
+                .trim(from: show ? progress : 1, to: 1)
                 .stroke(
                     LinearGradient(
                         gradient: Gradient(colors: [gradientColor_A, gradientColor_B]),
@@ -55,12 +57,15 @@ struct RingView: View {
             Text("\(Int(percent))%")
                 .font(.system(size: 14 * multiplier))
                 .fontWeight(.bold)
+                .onTapGesture {
+                    self.show.toggle()
+                }
         }
     }
 }
 
 struct RingView_Previews: PreviewProvider {
     static var previews: some View {
-        RingView()
+        RingView(show: .constant(true))
     }
 }

@@ -11,6 +11,10 @@ struct Home: View {
     @Binding var showProfile: Bool
     @State var showUpdate = false
 
+    var gradientColor_A = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+    var gradientColor_B = Color(#colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1))
+    var ringShadow = Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))
+
     var body: some View {
         VStack {
             HStack {
@@ -46,6 +50,30 @@ struct Home: View {
             .padding(.horizontal)
             .padding(.leading, 14)
             .padding(.top, 30)
+
+            HStack(spacing: 12.0) {
+                RingView(
+                    gradientColor_A: gradientColor_A,
+                    gradientColor_B: gradientColor_B,
+                    ringShadow: ringShadow,
+                    width: 44,
+                    height: 44,
+                    percent: 68,
+                show: .constant(true))
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("6 minutes left")
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                    Text("wathched 10 minutes todat")
+                        .font(.caption)
+                }
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
 
             ScrollView(
                 .horizontal,
