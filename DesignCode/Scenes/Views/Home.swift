@@ -10,92 +10,112 @@ import SwiftUI
 struct Home: View {
     @Binding var showProfile: Bool
     @State var showUpdate = false
-
-    var gradientColor_A = Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
-    var gradientColor_B = Color(#colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1))
-    var ringShadow = Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))
+    @Binding var showContent: Bool
 
     var body: some View {
-        VStack {
-            HStack {
-                Text("Watching")
-                    .modifier(CustomFontModifier(size: 28))
-                Spacer()
+        ScrollView {
+            VStack {
+                HStack {
+                    Text("Watching")
+                        .modifier(CustomFontModifier(size: 28))
+                    Spacer()
 
-                AvatarView(showProfile: $showProfile)
+                    AvatarView(showProfile: $showProfile)
 
-                Button(action: {
-                    self.showUpdate.toggle()
-                }) {
-                    Image(systemName: "bell")
-                        .renderingMode(.original)
-                        .font(.system(size: 16, weight: .medium))
-                        .frame(width: 36, height: 36)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .shadow(
-                            color: .black.opacity(0.1),
-                            radius: 1,
-                            x: 0, y: 1)
-                        .shadow(
-                            color: .black.opacity(0.2),
-                            radius: 10,
-                            x: 0, y: 10)
-                }
-                .sheet(isPresented: $showUpdate) {
-                    UpdateList()
-                }
-
-            }
-            .padding(.horizontal)
-            .padding(.leading, 14)
-            .padding(.top, 30)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                WatchRingsView()
-                    .padding(.horizontal, 30)
-                    .padding(.bottom, 30)
-            }
-
-            ScrollView(
-                .horizontal,
-                showsIndicators: false) {
-
-                HStack(spacing: 30) {
-                    ForEach(sectionData) { item in
-                        GeometryReader { geometry in
-                            SectionView(section: item)
-                                .rotation3DEffect(
-                                    Angle(
-                                        degrees: geometry.frame(
-                                            in: .global
-                                        ).minX / 20
-                                    ),
-                                    axis: (
-                                        x: 0, y: 10, z: 0
-                                    )
-                                )
-                        }
-                        .frame(width: 275, height: 275)
+                    Button(action: {
+                        self.showUpdate.toggle()
+                    }) {
+                        Image(systemName: "bell")
+                            .renderingMode(.original)
+                            .font(.system(size: 16, weight: .medium))
+                            .frame(width: 36, height: 36)
+                            .background(Color.white)
+                            .clipShape(Circle())
+                            .shadow(
+                                color: .black.opacity(0.1),
+                                radius: 1,
+                                x: 0, y: 1)
+                            .shadow(
+                                color: .black.opacity(0.2),
+                                radius: 10,
+                                x: 0, y: 10)
                     }
-                }
-                .padding(30)
-                .padding(.bottom, 30)
-            }
+                    .sheet(isPresented: $showUpdate) {
+                        UpdateList()
+                    }
 
-            Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.leading, 14)
+                .padding(.top, 30)
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    WatchRingsView()
+                        .padding(.horizontal, 30)
+                        .padding(.bottom, 30)
+                        .onTapGesture {
+                            self.showContent = true
+                        }
+                }
+
+                ScrollView(
+                    .horizontal,
+                    showsIndicators: false) {
+
+                    HStack(spacing: 20) {
+                        ForEach(sectionData) { item in
+                            GeometryReader { geometry in
+                                SectionView(section: item)
+                                    .rotation3DEffect(
+                                        Angle(
+                                            degrees: geometry.frame(
+                                                in: .global
+                                            ).minX / 20
+                                        ),
+                                        axis: (
+                                            x: 0, y: 10, z: 0
+                                        )
+                                    )
+                            }
+                            .frame(width: 275, height: 275)
+                        }
+                    }
+                    .padding(30)
+                    .padding(.bottom, 30)
+                }
+                .offset(y: -30)
+
+                HStack {
+                    Text("Cources")
+                        .font(.title).bold()
+                    Spacer()
+                }
+                .padding(.leading, 30)
+                .offset(y: -30)
+
+                SectionView(
+                    section: sectionData[2],
+                    width: screen.width-60,
+                    height: 275
+                )
+                .offset(y: -30)
+
+                Spacer()
+            }
         }
     }
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home(showProfile: .constant(false))
+        Home(showProfile: .constant(false), showContent: .constant(false))
     }
 }
 
 struct SectionView: View {
     var section: Section
+    var width: CGFloat = 275
+    var height: CGFloat = 275
 
     var body: some View {
         VStack {
@@ -124,7 +144,7 @@ struct SectionView: View {
         }
         .padding(.top, 20)
         .padding(.horizontal, 20)
-        .frame(width: 275, height: 275)
+        .frame(width: width , height: height)
         .background(section.color)
         .cornerRadius(30)
         .shadow(
