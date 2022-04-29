@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct CourseList: View {
+    @State var show = false
+    @State var show2 = false
     var body: some View {
-        VStack {
-            CourseView()
+        ScrollView {
+            VStack(spacing: 30) {
+                CourseView(show: $show)
+                GeometryReader { geometry in
+                    CourseView(show: self.$show2)
+                        .offset(
+                            y: show2 ? -geometry.frame(in: .global).minY : 0
+                        )
+                }
+                .frame(height: show2 ? screen.height : 280)
+                .frame(maxWidth: show2 ? .infinity : screen.width - 60)
+            }
+            .frame(width: screen.width)
         }
     }
 }
@@ -22,7 +35,7 @@ struct CoreList_Previews: PreviewProvider {
 }
 
 struct CourseView: View {
-    @State var show = false
+    @Binding var show: Bool
     private let backgroundColor = Color(#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1))
     private let shadowColor = Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))
 
